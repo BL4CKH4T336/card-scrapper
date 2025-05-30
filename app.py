@@ -30,7 +30,7 @@ def async_route(f):
             asyncio.set_event_loop(loop)
             return loop.run_until_complete(f(*args, **kwargs))
         except Exception as e:
-            return Response(json.dumps({"error": str(e)}, status=500, mimetype='application/json')
+            return Response(json.dumps({"error": str(e)}, status=500, mimetype='application/json'))
         finally:
             loop.close()
     return wrapper
