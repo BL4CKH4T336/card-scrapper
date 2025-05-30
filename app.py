@@ -35,10 +35,6 @@ def async_route(f):
             loop.close()
     return wrapper
 
-def validate_cc(cc):
-    """Basic credit card number validation"""
-    cc = ''.join(c for c in cc if c.isdigit())
-    return len(cc) >= 13 and len(cc) <= 19
 
 def parse_bot_reply(text):
     """Extract info from bot reply and return dict."""
@@ -62,10 +58,6 @@ def parse_bot_reply(text):
     
     return result
 
-async def send_and_get_result(cc_data):
-    # Validate CC format before sending
-    if not validate_cc(cc_data):
-        return {"error": "Invalid credit card format"}
     
     async with TelegramClient('anon', api_id, api_hash) as client:
         try:
